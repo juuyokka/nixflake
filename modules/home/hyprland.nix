@@ -1,9 +1,9 @@
-{
-  config,
-  lib,
-  inputs,
-  ...
-}: let
+{ config
+, lib
+, inputs
+, ...
+}:
+let
   inherit
     (lib)
     mkEnableOption
@@ -13,7 +13,8 @@
     ;
 
   cfg = config.milky.hyprland;
-in {
+in
+{
   options.milky.hyprland = {
     enable = mkEnableOption "Enable Hyprland";
     system = mkOption {
@@ -26,10 +27,10 @@ in {
     wayland.windowManager.hyprland = {
       package = inputs.hyprland.packages.${cfg.system}.default;
       enable = true;
-      plugins = [inputs.hy3.packages.${cfg.system}.default];
+      plugins = [ inputs.hy3.packages.${cfg.system}.default ];
 
       # TODO: do some cool stuff here!
-      settings = {};
+      settings = { };
     };
   };
 }

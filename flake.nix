@@ -30,7 +30,7 @@
   outputs = inputs:
     with inputs; let
       eachSystem = nixpkgs.lib.genAttrs (import systems);
-      specialArgs = {inherit inputs self;};
+      specialArgs = { inherit inputs self; };
 
       mkNixos = system: hostConfig:
         nixpkgs.lib.nixosSystem {
@@ -44,14 +44,15 @@
 
       mkHome = system: homeConfig:
         home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {inherit system;};
+          pkgs = import nixpkgs { inherit system; };
           extraSpecialArgs = specialArgs;
           modules = [
             ./modules/home
             homeConfig
           ];
         };
-    in {
+    in
+    {
       nixosConfigurations = {
         "milk-jug" = mkNixos "x86_64-linux" ./hosts/milk-jug;
       };
@@ -60,20 +61,22 @@
         "lactose@milk-jug" = mkHome "x86_64-linux" ./home/lactose/milk-jug.nix;
       };
 
-      devShells = eachSystem (system: let
-        pkgs = import nixpkgs {inherit system;};
-      in {
-        default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            disko.packages.${system}.default
-            nixos-install-tools
-            just
-            nixpkgs-fmt
-          ];
+      devShells = eachSystem (system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              disko.packages.${system}.default
+              nixos-install-tools
+              just
+              nixpkgs-fmt
+            ];
 
-          shellHook = ''
+            shellHook = ''
           '';
-        };
-      });
+          };
+        });
     };
 }
