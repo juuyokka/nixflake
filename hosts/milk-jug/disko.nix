@@ -22,7 +22,19 @@
               content = {
                 type = "filesystem";
                 format = "xfs";
+                extraArgs = [ "-f" ];
                 mountpoint = "/";
+              };
+            };
+            nix = {
+              type = "8300";
+              size = "128G";
+              content = {
+                type = "filesystem";
+                format = "btrfs";
+                extraArgs = [ "-f" ];
+                mountOptions = [ "compress=zstd:15" "nodatacow" ];
+                mountpoint = "/nix";
               };
             };
           };

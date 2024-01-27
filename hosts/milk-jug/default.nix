@@ -3,7 +3,6 @@
     ../../roles/workstation.nix
     ./hardware.nix
     ./disko.nix
-    ./storage.nix
   ];
 
   networking.hostName = "milk-jug";
