@@ -31,8 +31,12 @@
   # };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
   programs.xwayland.enable = true;
+  services.xserver = {
+		enable = true;
+		# By default, if all other display managers are disabled, lightdm will be enabled.
+		displayManager.lightdm.enable = false;
+	}
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "us";
