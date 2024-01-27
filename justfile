@@ -2,9 +2,9 @@
 disko path:
 	sudo disko --mode disko {{path}}
 
-# format using alejandra
+# format using nixpkgs-fmt
 format:
-	alejandra .
+	nixpkgs-fmt .
 
 # install NixOS
 install host:

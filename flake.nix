@@ -68,7 +68,7 @@
             disko.packages.${system}.default
             nixos-install-tools
             just
-            alejandra
+            nixpkgs-fmt
           ];
 
           shellHook = ''
