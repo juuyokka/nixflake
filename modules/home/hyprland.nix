@@ -25,8 +25,9 @@ in
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       package = inputs.hyprland.packages.${cfg.system}.default;
-      enable = true;
       plugins = [ inputs.hy3.packages.${cfg.system}.default ];
+      xwayland.enable = true;
+      enable = true;
 
       # TODO: do some cool stuff here!
       settings = { };

@@ -7,6 +7,12 @@
 
   networking.hostName = "milk-jug";
 
+  milky.hm.extraHomeConfig = {
+    wayland.windowManager.hyprland.settings = {
+      monitor = [ "DP-1,2560x1440@170,0x0,1" ];
+    };
+  };
+
   environment.etc."wireplumber/51-disable-webcam-mic.lua".source =
     ./51-disable-webcam-mic.lua;
 }
