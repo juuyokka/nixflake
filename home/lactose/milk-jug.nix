@@ -6,4 +6,5 @@
   };
 
   milky.hyprland.enable = true;
+  milky.git.enable = true;
 }
