@@ -8,6 +8,15 @@
 }: {
   imports = [ ];
 
+  milky = {
+    hm = {
+      enable = true;
+      users.lactose = {
+        enable = true;
+      };
+    };
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -33,10 +42,10 @@
   # Enable the X11 windowing system.
   programs.xwayland.enable = true;
   services.xserver = {
-		enable = true;
-		# By default, if all other display managers are disabled, lightdm will be enabled.
-		displayManager.lightdm.enable = false;
-	}
+    enable = true;
+    # By default, if all other display managers are disabled, lightdm will be enabled.
+    displayManager.lightdm.enable = false;
+  };
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "us";

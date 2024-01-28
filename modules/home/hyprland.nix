@@ -4,8 +4,7 @@
 , ...
 }:
 let
-  inherit
-    (lib)
+  inherit (lib)
     mkEnableOption
     mkIf
     mkOption
