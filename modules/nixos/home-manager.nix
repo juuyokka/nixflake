@@ -39,7 +39,7 @@ in
   };
 
   config = mkIf cfg.enable {
-		home-manager.extraSpecialArgs = { inherit inputs self; };
+    home-manager.extraSpecialArgs = { inherit inputs self; };
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
 
