@@ -75,7 +75,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lactose = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
