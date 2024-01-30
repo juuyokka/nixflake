@@ -5,5 +5,6 @@
     ./git.nix
     ./hyprland.nix
     ./neovim.nix
+    ./vesktop.nix
   ];
 }
