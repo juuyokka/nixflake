@@ -18,6 +18,10 @@
         name = "NixOS";
         toolbar = true;
         bookmarks = [
+					{
+						name = "NixOS Config";
+						url = "https://github.com/juuyokka/nixflake";
+					}
           {
             name = "NixOS Packages";
             url = "https://search.nixos.org/packages";
