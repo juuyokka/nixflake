@@ -11,8 +11,20 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+	filesystems."/storage" = {
+		device = "/dev/storage/pool";
+		fsType = "xfs";
+	};
+
+	filesystems."/nix" = {
+		depends = [ "/storage" ];
+		device = "/storage/nix";
+		fsTypes = "none";
+		options = [ "bind" ];
+	};
+
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" "dm-cache" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 

@@ -13,6 +13,9 @@
     };
   };
 
+	boot.initrd.services.lvm.enable = true;
+	services.lvm.boot.thin.enable = true;
+
   environment.etc."wireplumber/51-disable-webcam-mic.lua".source =
     ./51-disable-webcam-mic.lua;
 }
