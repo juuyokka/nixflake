@@ -11,20 +11,22 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-	filesystems."/storage" = {
-		device = "/dev/storage/pool";
-		fsType = "xfs";
-	};
+  fileSystems."/storage" = {
+    device = "/dev/vgstorage/pool";
+    fsType = "xfs";
+    neededForBoot = true;
+  };
 
-	filesystems."/nix" = {
-		depends = [ "/storage" ];
-		device = "/storage/nix";
-		fsTypes = "none";
-		options = [ "bind" ];
-	};
+  fileSystems."/nix" = {
+    # This depends is probably not needed but best to leave it
+    depends = [ "/dev/vgstorage/pool" ];
+    device = "/storage/nix";
+    fsType = "none";
+    options = [ "bind" ];
+  };
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" "dm-cache" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" "dm-cache" "dm-cache-smq" "dm-cache-default" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
