@@ -16,7 +16,7 @@
       };
     };
 
-		hyprland-portals.enable = true;
+    hyprland-portals.enable = true;
   };
 
   fonts.packages = with pkgs; [
@@ -52,7 +52,7 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
-	hardware.opengl.enable = true;
+  hardware.opengl.enable = true;
 
   # Enable the X11 windowing system.
   programs.xwayland.enable = true;
@@ -76,10 +76,12 @@
     pulse.enable = true;
   };
 
+  programs.zsh.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lactose = {
     isNormalUser = true;
-		shell = pkgs.zsh;
+    shell = pkgs.zsh;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
   };
 

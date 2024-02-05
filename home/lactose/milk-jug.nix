@@ -11,6 +11,7 @@
     hyprland.enable = true;
     neovim.enable = true;
     vesktop.enable = true;
+    zsh.enable = true;
 
     firefox.enable = true;
     firefox.bookmarks = [
