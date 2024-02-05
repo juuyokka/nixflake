@@ -37,7 +37,8 @@
 						size = "100%";
 						content = {
 							type = "filesystem";
-							format = "/";
+							format = "xfs";
+							mountpoint = "/";
 						};
 					};
 				};
