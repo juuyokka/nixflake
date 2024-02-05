@@ -72,10 +72,10 @@
               nixos-install-tools
               just
               nixpkgs-fmt
-							(pkgs.callPackage ./derivations/initcachepool.nix { } {
-								storageDisk = "/dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3TJSP";
-								cacheDisk = "/dev/disk/by-id/nvme-CT1000T700SSD3_2339E87A058B";
-							})
+              (pkgs.callPackage ./derivations/initcachepool.nix { } {
+                storageDisk = "/dev/disk/by-id/ata-ST8000VN004-3CP101_WWZ3TJSP";
+                cacheDisk = "/dev/disk/by-id/nvme-SPCC_M.2_PCIe_SSD_AA230717NV204801137";
+              })
             ];
 
             shellHook = ''
