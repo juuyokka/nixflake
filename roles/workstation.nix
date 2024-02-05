@@ -15,6 +15,8 @@
         enable = true;
       };
     };
+
+		hyprland-portals.enable = true;
   };
 
   fonts.packages = with pkgs; [
@@ -49,6 +51,8 @@
   #   keyMap = "us";
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
+
+	hardware.opengl.enable = true;
 
   # Enable the X11 windowing system.
   programs.xwayland.enable = true;
