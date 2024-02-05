@@ -4,7 +4,7 @@
 			boot = {
 				type = "disk";
 				device = "/dev/disk/by-id/nvme-CT1000T700SSD3_2339E87A058B";
-				content {
+				content = {
 					type = "gpt";
 					partitions = {
 						ESP = {
@@ -33,7 +33,6 @@
 				type = "lvm_vg";
 				lvs = {
 					root = {
-						type = "8300";
 						size = "100%";
 						content = {
 							type = "filesystem";
