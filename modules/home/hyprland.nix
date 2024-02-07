@@ -1,5 +1,6 @@
 { config
 , lib
+, pkgs
 , inputs
 , ...
 }:
@@ -41,6 +42,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [ wl-clipboard ];
+
     wayland.windowManager.hyprland = {
       package = inputs.hyprland.packages.${cfg.system}.default;
       plugins = [ inputs.hy3.packages.${cfg.system}.default ];
