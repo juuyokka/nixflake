@@ -8,11 +8,16 @@ let
     mkEnableOption
     mkIf
     mkOption
+    mod
     range
     types
     zipLists
     ;
   inherit (builtins)
+    attrValues
+    concatLists
+    listToAttrs
+    mapAttrs
     toString
     ;
 
@@ -29,6 +34,10 @@ in
       type = types.str;
       default = "x86_64-linux";
     };
+    extraConfig = mkOption {
+      type = types.lines;
+      default = "";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -37,29 +46,64 @@ in
       plugins = [ inputs.hy3.packages.${cfg.system}.default ];
       xwayland.enable = true;
       enable = true;
+      inherit (cfg) extraConfig;
 
       settings =
         let
-          mod = cfg.modKey;
+          md = cfg.modKey;
+          # This function takes an attrset of mappings (e.g. keys to workspaces)
+          # and functions that use each mapping to create a list of binds
+          mapBind = (bindMap: binds:
+            concatLists (attrValues (mapAttrs
+              (x: y:
+                (map
+                  (b: b x y)
+                  (attrValues binds)))
+              bindMap)));
+
           workspaceBindings =
             let
-              fn = x: "${mod},${toString x.fst},workspace,${toString x.snd}";
-              rn = range 1 9;
-              ls = (zipLists rn rn) ++ [{ fst = 0; snd = 10; }];
+              bindMap = (listToAttrs (map
+                (n: { name = "${toString (mod n 10)}"; value = "${toString n}"; })
+                (range 1 10)));
+
+              binds = {
+                switch = x: y: "${md},${x},workspace,${y}";
+                move = x: y: "${md}+CTRL,${x},movetoworkspacesilent,${y}";
+                moveswitch = x: y: "${md}+SHIFT,${x},movetoworkspace,${y}";
+              };
             in
-            map fn ls;
+            mapBind bindMap binds;
+
+          windowBindings =
+            let
+              bindMap = {
+                "H" = "l";
+                "J" = "d";
+                "K" = "u";
+                "L" = "r";
+              };
+
+              binds = {
+                focus = x: y: "${md},${x},movefocus,${y}";
+              };
+            in
+            mapBind bindMap binds;
         in
         {
           bind = [
-            "${mod},KP_Enter,exec,foot"
-            "${mod}+SHIFT,Q,killactive"
-            "${mod},C,exec,vencorddesktop"
+            "${md},RETURN,exec,foot"
+            "${md}+SHIFT,Q,killactive"
+            "${md},C,exec,vencorddesktop"
+            "${md},W,exec,firefox"
+            "${md}+SHIFT,E,exit"
 
-            "${mod},H,movefocus,l"
-            "${mod},J,movefocus,d"
-            "${mod},K,movefocus,u"
-            "${mod},L,movefocus,r"
-          ] ++ workspaceBindings;
+            "${md},F,fullscreen"
+            "${md}+CTRL,F,fakefullscreen"
+          ]
+          ++ windowBindings
+          ++ workspaceBindings
+          ;
 
           general = {
             layout = "master";
