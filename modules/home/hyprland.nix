@@ -89,6 +89,7 @@ in
 
               binds = {
                 focus = x: y: "${md},${x},movefocus,${y}";
+                move = x: y: "${md}+SHIFT,${x},movewindow,${y}";
               };
             in
             mapBind bindMap binds;
