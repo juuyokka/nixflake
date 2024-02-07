@@ -53,6 +53,7 @@
   # };
 
   hardware.opengl.enable = true;
+  programs.dconf.enable = true;
 
   # Enable the X11 windowing system.
   programs.xwayland.enable = true;
