@@ -65,12 +65,22 @@ in
             layout = "master";
           };
 
+          env = [
+            "NIXOS_OZONE_WL,1"
+            "GDK_SCALE,1.25"
+            "QT_SCALE_FACTOR,1.25"
+            "ELM_SCALE,1.25"
+          ];
           misc = {
             disable_hyprland_logo = true;
             disable_splash_rendering = true;
             force_default_wallpaper = 0;
             enable_swallow = true;
             swallow_regex = "^foot(client)?$";
+          };
+
+          xwayland = {
+            force_zero_scaling = true;
           };
         };
     };
