@@ -38,6 +38,7 @@
           modules = [
             disko.nixosModules.disko
             ./modules/nixos
+            ./overlays.nix
             hostConfig
           ];
         };
@@ -48,6 +49,7 @@
           extraSpecialArgs = specialArgs;
           modules = [
             ./modules/home
+            ./overlays.nix
             homeConfig
           ];
         };
@@ -60,6 +62,15 @@
       homeConfigurations = {
         "lactose@milk-jug" = mkHome "x86_64-linux" ./home/lactose/milk-jug.nix;
       };
+
+      packages = eachSystem (system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        {
+          xcursor-pro = pkgs.callPackage ./derivations/xcursor-pro.nix { };
+          notwaita-cursor-theme = pkgs.callPackage ./derivations/notwaita-cursor-theme.nix { };
+        });
 
       devShells = eachSystem (system:
         let
