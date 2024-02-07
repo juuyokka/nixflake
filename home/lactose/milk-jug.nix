@@ -5,7 +5,15 @@
     stateVersion = "23.11";
   };
 
+
   milky = {
+    cursor = {
+      enable = true;
+      package = pkgs.milky.xcursor-pro;
+      theme = "XCursor-Pro-Dark";
+      size = 32;
+    };
+
     foot.enable = true;
     git.enable = true;
     hyprland.enable = true;
@@ -19,10 +27,10 @@
         name = "NixOS";
         toolbar = true;
         bookmarks = [
-					{
-						name = "NixOS Config";
-						url = "https://github.com/juuyokka/nixflake";
-					}
+          {
+            name = "NixOS Config";
+            url = "https://github.com/juuyokka/nixflake";
+          }
           {
             name = "NixOS Packages";
             url = "https://search.nixos.org/packages";
