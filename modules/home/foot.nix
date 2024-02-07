@@ -17,9 +17,9 @@ in
       enable = true;
       settings = {
         main = {
-          font = "JetBrainsMonoNL NFM Regular:20";
-          font-italic = "VictorMono NFM Bold Italic:17";
-          font-bold-italic = "VictorMono NFM Bold Italic:17";
+          font = "JetBrainsMonoNL NFM:size=14";
+          font-italic = "VictorMono NFM Bold Italic:12";
+          font-bold-italic = "VictorMono NFM Bold Italic:12";
         };
       };
     };
