@@ -20,9 +20,9 @@ in
 
   config = mkIf cfg.enable {
     programs.zsh = {
-			enable = true;
-			enableCompletion = true;
-			autocd = true;
-		};
+      enable = true;
+      enableCompletion = true;
+      autocd = true;
+    };
   };
 }
